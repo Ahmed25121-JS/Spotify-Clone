@@ -14,6 +14,11 @@ body {
     color: white;
 }
 
+.logo{
+    display: flex;
+    justify-content: space-between;
+}
+
 .left {
     width: 25vw;
     padding: 10px;
@@ -85,12 +90,21 @@ body {
     
 }
 
+.spotifyPlaylist h1{
+  position: relative;
+  left: 47px;
+    
+}
+
+
+
 .cardContainer {
+
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
     margin: 30px;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 70vh;
 }
 
@@ -179,11 +193,16 @@ body {
 
 
 .playbar{
-    position: absolute;
-    bottom: 0;
-    background-color: rgb(247, 251, 247);
-    width: 90%;
+    position: fixed;
+    bottom: 30px;
+    filter: invert(1);
+    background-color: white;
+    border-radius: 10px;
+    width: 88vw;
     padding: 12px;
+    width: 70vw;
+    min-height: 40px;
+
 }
 
 .prevsong{
@@ -198,10 +217,22 @@ body {
 
 }
 
+.songList {
+    margin-bottom: 44px;
+    height: 544px;
+    overflow: auto;
+    
+
+}
+
+.hamburger{
+    display: none;
+}
+
 .songList ul{
     padding: 0 12px;
-    height: 380px;
-    overflow: auto;
+    
+    
 
 }
 
@@ -232,3 +263,96 @@ body {
     font-size: 15px;
     width: 80px;
 }
+
+.seekbar{
+    height: 12px;
+    width: 90%;
+    margin: 6px;
+    border-radius: 10px;
+  background-color:  black;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.circle{
+    height: 23px;
+    width: 23px;
+    border-radius: 20px;
+    background-color: black;
+    position: relative;
+    bottom: 6px;
+    transition: left 0.5s;
+}
+
+.songbuttons img {
+    cursor: pointer;
+}
+
+.close{
+    display: none;
+}
+.abovebar{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+.songinfo{
+ 
+    color: black;
+}
+
+
+.songtime{
+    color: black;
+}
+
+.hamburgercont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width:1400px) {
+    .left{
+        background-color: red;
+        position: absolute;
+        left: -110%;
+        transition: all 1s;
+        z-index: 1;
+        width: 335px;
+    }
+    .right{
+        width: 100vw;
+    }
+    .playbar{
+        width:90vw;
+    }
+
+    .seekbar{
+        
+        width:calc(100vw-70px);
+    }
+    .hamburger{
+        display: block;
+        filter: invert();
+    }
+   .card{
+    width: 90vw;
+   }
+   .cardContainer{
+    
+    justify-content: center;
+    margin: 0;
+   }
+.close{
+    display: block;
+}
+.right{
+    margin: 0;
+}
+.abovebar{
+    flex-direction: column;
+    align-items: center;
+    gap: 23px;
+}
+    }

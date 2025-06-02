@@ -13,6 +13,7 @@
         <div class="home m1 p1 bg-gray rounded">
           <div class="logo">
             <img class="invert" src="logo.svg" alt="" />
+            <img class="invert close" src="close.svg" alt="">
           </div>
           <ul>
             <li><img class="invert" src="home.svg" alt="home" /> Home</li>
@@ -69,6 +70,9 @@
       <div class="right bg-gray rounded">
         <div class="header">
           <div class="nav">
+        <div class="hamburgercont">
+              <img class="hamburger" src="hamburger.svg" alt="">
+           
             <svg
               class="invert"
               xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +108,7 @@
                 stroke-linejoin="round"
               ></path>
             </svg>
+            </div>
           </div>
           <div class="buttons">
             <button class="signupbtn">SignUp</button>
@@ -167,13 +172,25 @@
             </div>
           </div>
           <div class="playbar">
-            <div class="songinfo"></div>
-            <div class="songbuttons">
-              <img src="prevsong.svg" alt="" />
-              <img src="play.svg" alt="" />
-              <img src="nextsong.svg" alt="" />
+            <div class="seekbar">
+              <div class="circle">
+                
+              </div>
             </div>
-            <div class="songtime"></div>
+            <div class="abovebar">           
+               <div class="songinfo">
+
+            </div>
+            <div class="songbuttons">
+              <img id="previous" src="prevsong.svg" alt="" />
+              <img id="play" src="play.svg" alt="" />
+              <img id="next" src="nextsong.svg" alt="" />
+            </div>
+            <div class="songtime">
+
+            </div>
+            </div>
+
           </div>
         </div>
       </div>
