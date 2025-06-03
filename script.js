@@ -1,6 +1,7 @@
 console.log("lets write javascript");
 let currentSong= new Audio();
 let songs;
+let currfolder;
 
 
 function formatTime(seconds) {
@@ -17,8 +18,9 @@ function formatTime(seconds) {
 
 
 
-async function getSongs(params) {
-  let a = await fetch("http://127.0.0.1:3000/songs/");
+async function getSongs(folder) {
+  currfolder =folder;
+  let a = await fetch(`http://127.0.0.1:3000/${folder}`);
   let response = await a.text();
   // console.log(response);
   let div = document.createElement("div");
@@ -32,7 +34,7 @@ let songs = [];
       console.log(element.href);
       // split is used on a string returns an array of 2 strings one before
       //  word specified and one after
-      songs.push(element.href.split("/songs/")[1]);
+      songs.push(element.href.split(`/${folder}/`)[1]);
     }
   }
   return songs;
@@ -40,7 +42,7 @@ let songs = [];
 // http://127.0.0.1:3000/songs/(Look%20Out)%20She's%20America%20-%20Otis%20McDonald.mp3
 
 const PlayMusic = (track,pause=true)=>{
-  currentSong.src="/songs/" + track
+  currentSong.src=`/${currfolder}/` + track
   if (!pause){
     currentSong.play()
    
@@ -58,7 +60,7 @@ const PlayMusic = (track,pause=true)=>{
 async function main(params) {
   
 
- songs = await getSongs();
+ songs = await getSongs('songs/cs');
   console.log(songs);
   PlayMusic(songs[0],true)
 
@@ -89,7 +91,7 @@ async function main(params) {
   // so Array.from is used to convert it into an actual array so we can use array methods on it
  // Inside your main() function, after setting songUl.innerHTML:
 
-// Add a small delay to allow DOM to update
+// Creating an array and then passing in the song to play music
  Array.from(
     document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
     e.addEventListener("click", element=>{
@@ -115,10 +117,10 @@ play.addEventListener('click',()=>{
 
 // listen for timeuodate function 
 currentSong.addEventListener("timeupdate",()=>{
-  console.log(currentSong.currentTime,currentSong.duration)
+ 
   document.querySelector(".songtime").innerHTML =`
-  ${formatTime(currentSong.currentTime)}/${formatTime(currentSong.duration)}
-  `
+  ${formatTime(currentSong.currentTime)}/ ${formatTime(currentSong.duration) }`
+ 
   document.querySelector('.circle').style.left=(currentSong.currentTime/currentSong.duration) *100 + "%"
 })
 
@@ -141,34 +143,46 @@ document.querySelector(".close").addEventListener('click',()=>{
    
 })
 
-// add an evet listener to previous and next
-previous.addEventListener('click',(e)=>{
-  console.log("previos")
-  let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
-  console.log(songs,index)
-  if (index-1 >= 0) {
-    
- PlayMusic(songs[index-1])
-  }
+// add an evet listener to previous 
+previous.addEventListener('click',()=>{
+console.log("next"),
+console.log(currentSong.src)
+console.log(songs)
+lastIndex = currentSong.src.split("/")
+songplaying = lastIndex[lastIndex.length-1]
+console.log(songplaying)
+let index =(songs.indexOf(songplaying))
+if (index <= songs.length-1) {
+  PlayMusic(songs[index-1])
+}
+
+
+
 })
 
 // add an event listener for next
-
-next.addEventListener('click',(e)=>{
-  console.log("next")
-  console.log(currentSong.src)
-
-  console.log(currentSong.src.split("/").slice(-1)[0])
-  let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
-  console.log(songs,index)
-  if ((index+1) > songs.length) {
-    
- PlayMusic(songs[index+1])
-  }
+next.addEventListener('click',()=>{
+console.log("next"),
+console.log(currentSong.src)
+console.log(songs)
+lastIndex = currentSong.src.split("/")
+songplaying = lastIndex[lastIndex.length-1]
+console.log(songplaying)
+let index =(songs.indexOf(songplaying))
+if (index < songs.length-1) {
+  PlayMusic(songs[index+1])
+}
 
 })
 
+// Add an event to volume
+document.querySelector(".range").getElementsByTagName('input')[0].addEventListener('change',(e)=>{
+  console.log("Setting volume to" ,e.target.value,"/100");
+  currentSong.volume=parseInt(e.target.value)/100
+  
+})
 
+// Load the playlist whenver card is clicked
 
 
 
