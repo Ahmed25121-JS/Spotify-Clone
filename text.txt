@@ -1,0 +1,37 @@
+
+  // Shows all the songs in the playlist
+  // let songUl = document
+  //   .querySelector(".songList")
+  //   .getElementsByTagName("ul")[0];
+  // console.log(songUl);
+  // for (const song of songs) {
+  //   songUl.innerHTML =
+  //     songUl.innerHTML +
+  //     `
+  //             <li>
+  //               <img class="invert" src="music.svg" alt="" />
+  //               <div class="info">
+  //                 <div>${song
+  //                   .replaceAll("%20", " ")
+  //                  }</div>
+  //                 <div>Ahmed</div>
+  //               </div>
+  //               <div class="playnow">
+  //                <span>Play now</span> <img class="invert" src="play.svg" alt="" />
+  //               </div>
+  //             </li>`
+  // }
+  // Attach an event listener to each song
+  // After using getelementby tagsname we get an array of objects (or you can call it an array like object)
+  // so Array.from is used to convert it into an actual array so we can use array methods on it
+ // Inside your main() function, after setting songUl.innerHTML:
+
+// Creating an array and then passing in the song to play music
+//  Array.from(
+//     document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
+//     e.addEventListener("click", element=>{
+// console.log(e.querySelector(".info").firstElementChild.innerHTML)
+// PlayMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
+//     })
+  
+//   })
